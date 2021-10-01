@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
         ciphertest = encrypt(cand_key, iv, plaintext);
 
         // Check if the ciphertext generated matches the target cipher text
-        if check_cipher(ciphertext, ciphertest) {
+        if !strcmp(ciphertext, ciphertest) {
             printf("Success!!!");
             printf(cand_key);
             success = 1;

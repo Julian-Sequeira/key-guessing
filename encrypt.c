@@ -11,9 +11,7 @@ char *encrypt(unsigned char *key, unsigned char *vector, unsigned char *text) {
     // encrypt final - get the last 16 byte block
     // this is because the data is 32bytes
 
-    // This gives us 32 raw bytes
-    // but we are given a hex formatted string
-    // so we need to go and change the raw bytes into a hex formatted array
+    // How do you convert raw bytes into hex?
 
     // Makefile: openssl is in the usr/include and usr/lib
 
@@ -38,4 +36,12 @@ char *encrypt(unsigned char *key, unsigned char *vector, unsigned char *text) {
     EVP_CIPHER_CTX ctx;
     EVP_CIPHER_CTX_init(&ctx);
     EVP_EncryptInit_ex(&ctx, EVP_aes_128_cbc(), NULL, key, vector);
+
+    // The result should be 32 bytes
+    unsigned int increment = 0;
+    EVP_EncryptUpdate(&ctx, result, &increment, text, strlen(text));
+    EVP_EncryptFinal_ex(&ctx, result + increment, &increment);
+    EVP_CIPHER_CTX_cleanup(&ctx);
+
+    return result;
 }
