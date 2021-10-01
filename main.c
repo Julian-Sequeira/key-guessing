@@ -1,7 +1,3 @@
-#include <openssl/ssl.h>
-#include <openssl/conf.h>
-#include <openssl/evp.h>
-#include <openssl/err.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,7 +31,7 @@ int main(int argc, char *argv[]) {
 	char *cand_key = NULL;
 	size_t len = 0;
 	while(getline(&cand_key, &len, fp) != 1) {
-		candidate[strcspn(cand_key, "\r\n")] = 0;    // fget's strings are null terminated and we want to get rid of that (also want to get rid of any weird line break types that might be there hence the "\r")
+		// candidate[strcspn(cand_key, "\r\n")] = 0;    // fget's strings are null terminated and we want to get rid of that (also want to get rid of any weird line break types that might be there hence the "\r")
 
         // Encrypt the plaintext using this candidate key
         ciphertest = encrypt(cand_key, iv, plaintext);
