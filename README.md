@@ -7,5 +7,3 @@ Threat model:
 - Wants to find the encryption key
 
 This is an example program to brute force guess the key used. The assignment forbids the use of openssl commands, so this involves digging into the internals of the commands a little bit. 
-
-Bonus: I get to refresh myself on C a little bit. :)
